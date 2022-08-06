@@ -13,10 +13,7 @@ import (
 
 func main() {
 	// Load environment variables
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatalf("failed to load .env: %v", err)
-	}
+	godotenv.Load(".env")
 
 	healthPlanetAccessToken := os.Getenv("HEALTHPLANET_ACCESS_TOKEN")
 	fitbitClientId := os.Getenv("FITBIT_CLIENT_ID")

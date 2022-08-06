@@ -34,10 +34,7 @@ func genCodeChallenge() (verifier string, challenge string) {
 }
 
 func main() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatalf("failed to load .env: %v", err)
-	}
+	godotenv.Load(".env")
 
 	clientID := os.Getenv("FITBIT_CLIENT_ID")
 	clientSecret := os.Getenv("FITBIT_CLIENT_SECRET")

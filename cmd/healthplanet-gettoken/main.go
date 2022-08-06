@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"net/url"
 	"os"
@@ -21,10 +20,7 @@ type AuthorizeResponse struct {
 }
 
 func main() {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatalf("failed to load .env: %v", err)
-	}
+	godotenv.Load(".env")
 
 	healthPlanetClientId := os.Getenv("HEALTHPLANET_CLIENT_ID")
 	healthPlanetClientSecret := os.Getenv("HEALTHPLANET_CLIENT_SECRET")

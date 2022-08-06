@@ -1,0 +1,25 @@
+name: Release module
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux, windows]
+        goarch: [amd64, arm, arm64]
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Build and release(healthplanet-to-fitbit)
+        uses: wangyoucao577/go-release-action@v1.16
+        with:
+          gihtub_token: ${{ secrets.GITHUB_TOKEN }}
+          goos: ${{ matrix.goos }}
+          goarch: ${{ matrix.goarch }}
+          project_path: "./cmd/healthplanet-to-fitbit"
+          binaryname: "healthplanet-to-fitbit"
+          ldflags: "-s -w"
